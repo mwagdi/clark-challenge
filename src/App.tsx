@@ -1,7 +1,9 @@
 import TextExample from 'components/TextExample/TextExample';
 import { registerRootComponent } from 'expo';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+
+const text: number = 'fsdf';
 
 export default function App() {
   return (
