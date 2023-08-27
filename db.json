@@ -1,0 +1,37 @@
+{
+  "products": [
+    {
+      "name": "Product A",
+      "image": "https://picsum.photos/200",
+      "price": 30
+    },{
+      "name": "Product B",
+      "image": "https://picsum.photos/200",
+      "price": 50
+    },{
+      "name": "Product C",
+      "image": "https://picsum.photos/200",
+      "price": 30
+    },{
+      "name": "Product D",
+      "image": "https://picsum.photos/200",
+      "price": 60
+    },{
+      "name": "Product E",
+      "image": "https://picsum.photos/200",
+      "price": 30
+    },{
+      "name": "Product F",
+      "image": "https://picsum.photos/200",
+      "price": 70
+    },{
+      "name": "Product G",
+      "image": "https://picsum.photos/200",
+      "price": 30
+    },{
+      "name": "Product H",
+      "image": "https://picsum.photos/200",
+      "price": 80
+    }
+  ]
+}
