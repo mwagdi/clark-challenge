@@ -1,25 +1,15 @@
 import {
   ActivityIndicator,
   FlatList,
-  Pressable,
   RefreshControl,
   SafeAreaView,
-  Text,
+  StyleSheet,
   View,
 } from 'react-native';
 
+import { ProductItem } from '@/components';
 import { useFetchProducts } from '@/hooks';
-import { Product, ScreenProps } from '@/types';
-
-type Props = Omit<Product, 'id'> & { onPress: () => void };
-
-const Item = ({ name, image, price, onPress }: Props) => (
-  <View>
-    <Pressable onPress={onPress}>
-      <Text>{name}</Text>
-    </Pressable>
-  </View>
-);
+import { ScreenProps } from '@/types';
 
 const ProductListingScreen = ({
   navigation,
@@ -31,18 +21,24 @@ const ProductListingScreen = ({
   };
 
   return (
-    <SafeAreaView>
+    <View style={styles.container}>
       {loading && <ActivityIndicator />}
       <FlatList
         data={products}
         renderItem={({ item }) => (
-          <Item {...item} onPress={handlePress(item.id)} />
+          <ProductItem {...item} onPress={handlePress(item.id)} />
         )}
         keyExtractor={item => `${item.id}`}
         refreshControl={<RefreshControl refreshing={loading} />}
       />
-    </SafeAreaView>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 10,
+  },
+});
 
 export default ProductListingScreen;
