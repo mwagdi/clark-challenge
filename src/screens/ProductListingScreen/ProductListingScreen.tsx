@@ -1,21 +1,47 @@
-import { Pressable, Text, View } from 'react-native';
+import {
+  ActivityIndicator,
+  FlatList,
+  Pressable,
+  RefreshControl,
+  SafeAreaView,
+  Text,
+  View,
+} from 'react-native';
 
-import { ScreenProps } from '@/types';
+import { useFetchProducts } from '@/hooks';
+import { Product, ScreenProps } from '@/types';
+
+type Props = Omit<Product, 'id'> & { onPress: () => void };
+
+const Item = ({ name, image, price, onPress }: Props) => (
+  <View>
+    <Pressable onPress={onPress}>
+      <Text>{name}</Text>
+    </Pressable>
+  </View>
+);
 
 const ProductListingScreen = ({
   navigation,
-}: ScreenProps<'ProductListing'>) => {
-  const handlePress = () => {
-    navigation.navigate('ProductDetails');
+}: ScreenProps<'ProductListing'>): JSX.Element => {
+  const { products, loading, error } = useFetchProducts();
+
+  const handlePress = (id: number) => () => {
+    navigation.navigate('ProductDetails', { id });
   };
 
   return (
-    <View>
-      <Text>Welcome to the product listing screen</Text>
-      <Pressable onPress={handlePress}>
-        <Text>Go to PD Screen!</Text>
-      </Pressable>
-    </View>
+    <SafeAreaView>
+      {loading && <ActivityIndicator />}
+      <FlatList
+        data={products}
+        renderItem={({ item }) => (
+          <Item {...item} onPress={handlePress(item.id)} />
+        )}
+        keyExtractor={item => `${item.id}`}
+        refreshControl={<RefreshControl refreshing={loading} />}
+      />
+    </SafeAreaView>
   );
 };
 
