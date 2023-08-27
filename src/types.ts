@@ -7,3 +7,10 @@ export type StackParamList = {
 
 export type ScreenProps<ScreenName extends keyof StackParamList> =
   NativeStackScreenProps<StackParamList, ScreenName>;
+
+export type Product = {
+  id: number;
+  name: string;
+  image: string;
+  price: number;
+};
