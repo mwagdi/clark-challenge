@@ -1,16 +1,33 @@
-import TextExample from 'components/TextExample/TextExample';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { registerRootComponent } from 'expo';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 
-export default function App() {
+import { ProductDetailsScreen, ProductListingScreen } from '@/screens';
+import { StackParamList } from '@/types';
+
+const Stack = createNativeStackNavigator<StackParamList>();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <TextExample />
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <StatusBar style="dark" />
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="ProductListing"
+            component={ProductListingScreen}
+          />
+          <Stack.Screen
+            name="ProductDetails"
+            component={ProductDetailsScreen}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
