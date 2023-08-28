@@ -2,9 +2,9 @@ import {
   ActivityIndicator,
   FlatList,
   RefreshControl,
-  SafeAreaView,
   StyleSheet,
   View,
+  Text,
 } from 'react-native';
 
 import { ProductItem } from '@/components';
@@ -22,8 +22,10 @@ const ProductListingScreen = ({
 
   return (
     <View style={styles.container}>
-      {loading && <ActivityIndicator />}
+      {loading && <ActivityIndicator testID="loading-indicator" />}
+      {error && <Text>An error has occurred</Text>}
       <FlatList
+        testID="product-list"
         data={products}
         renderItem={({ item }) => (
           <ProductItem {...item} onPress={handlePress(item.id)} />
