@@ -3,10 +3,6 @@ import React from 'react';
 
 import { ProductItem } from './ProductItem';
 
-jest.mock('react-native-format-currency', () => ({
-  formatCurrency: jest.fn(() => ['$100.00', 'USD']),
-}));
-
 const mockProduct = {
   name: 'Test Product',
   image: 'https://example.com/image.jpg',
@@ -21,7 +17,7 @@ describe('ProductItem', () => {
     );
 
     const nameText = getByText('Test Product');
-    const priceText = getByText('$100.00');
+    const priceText = getByText('€100');
 
     expect(nameText).toBeTruthy();
     expect(priceText).toBeTruthy();

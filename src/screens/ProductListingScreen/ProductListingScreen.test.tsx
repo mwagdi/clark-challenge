@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { render, waitFor } from '@testing-library/react-native';
 import React from 'react';
 
@@ -41,6 +42,7 @@ describe('ProductListingScreen', () => {
     });
 
     const { getByTestId } = render(
+      // @ts-ignore
       <ProductListingScreen navigation={mockNavigation} />,
     );
     const loadingIndicator = getByTestId('loading-indicator');
@@ -56,6 +58,7 @@ describe('ProductListingScreen', () => {
     });
 
     const { getByText } = render(
+      // @ts-ignore
       <ProductListingScreen navigation={mockNavigation} />,
     );
     const errorText = getByText('An error has occurred');
@@ -65,6 +68,7 @@ describe('ProductListingScreen', () => {
 
   it('renders products', async () => {
     const { getByText, getByTestId } = render(
+      // @ts-ignore
       <ProductListingScreen navigation={mockNavigation} />,
     );
 

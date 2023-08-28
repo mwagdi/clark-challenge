@@ -27,7 +27,7 @@ export const useFetchProductDetails = (id: number) => {
     };
 
     fetchProductDetails();
-  }, []);
+  }, [id]);
 
   return {
     product,
