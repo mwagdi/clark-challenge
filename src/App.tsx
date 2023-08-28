@@ -2,7 +2,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { registerRootComponent } from 'expo';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet } from 'react-native';
 
 import { ProductDetailsScreen, ProductListingScreen } from '@/screens';
 import { StackParamList } from '@/types';
@@ -18,24 +17,20 @@ const App = () => {
           <Stack.Screen
             name="ProductListing"
             component={ProductListingScreen}
+            options={{ title: 'Our Products' }}
           />
           <Stack.Screen
             name="ProductDetails"
             component={ProductDetailsScreen}
+            options={({ route }) => ({
+              title: `ID: ${route.params.id}`,
+              headerBackTitle: 'Back',
+            })}
           />
         </Stack.Navigator>
       </NavigationContainer>
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 registerRootComponent(App);
